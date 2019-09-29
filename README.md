@@ -7,30 +7,34 @@ This project will have the followwing structure:
 
 <h2>Analysis</h2>
 
-Requirements
-Scenarios
-Primary Class List
-Class Diagrams
-Use Case Diagrams	
-Result Of Structured Walkthrough
+Requirements<br>
+Scenarios<br>
+Primary Class List<br>
+Class Diagrams<br>
+Use Case Diagrams	<br>
+Result Of Structured Walkthrough<br>
+
 <h2>Product Design</h2>
 
-Object Diagrams	
-Refined Class Diagrams
-User Interface MockUps
-State Machines
+Object Diagrams	<br>
+Refined Class Diagrams<br>
+User Interface MockUps<br>
+State Machines<br>
+
 <h2>Class Design</h2>
 
-Collaboration Diagrams
-Sequence Diagrams
-Object Diagrams
-Refined Class Diagrams
-Class Skeletons
+Collaboration Diagrams <br>
+Sequence Diagrams<br>
+Object Diagrams<br>
+Refined Class Diagrams<br>
+Class Skeletons<br>
+
 <h2>Implementation (Provisional)</h2>
 
-Source Code
+Source Code<br>
+
 <h2> Final Implementation</h2>
 
-Summary of changes and Additions
-Source Code (Final)
-Appendix
+Summary of changes and Additions <br>
+Source Code (Final)<br>
+Appendix<br>

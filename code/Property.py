@@ -94,7 +94,10 @@ class Property:
 	def set_owner(self, player):
 		self.owner = player
 
-	def set_owned(self, own):
+	def set_owned(self):
 		self.owned = own
+
+	def get_owner(self):
+		return self.owner
 
 

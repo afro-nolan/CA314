@@ -78,6 +78,7 @@ def GameCard(Card):
 
 	def get_jailfree_card(self, card_player):
 		"""Get a get out of jail free card"""
+		Bank.cards.remove(self)
 		card_player.inventory.place_card(self)
 
 

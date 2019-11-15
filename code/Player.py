@@ -61,7 +61,7 @@ class Player:
 			self.location += moves
 		else:
 			self.location += moves
-		pos_on_board = self.location.get_location() #Tuple position for square on board
+		pos_on_board = self.get_location() #Tuple position for square on board
 		self.piece.update_position(pos_on_board[0], pos_on_board[1]) #Update game piece
 
 
@@ -81,6 +81,9 @@ class Player:
 
 	def quit_bid(self):
 		self.in_bid = False
+
+	def get_in_bid(self):
+		return self.in_bid
 
 	def deal_agreed(self, agree):
 		"""Takes a boolean 'agree' which if true, then the deal is agreed otherwise it is not"""

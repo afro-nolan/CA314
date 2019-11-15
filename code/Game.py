@@ -13,7 +13,6 @@ class Game:
 		self.players = []
 		self.winner = None
 		self.board = None
-		self.size = self.weight, self.height = 800, 800
 		self.cards = []
 		self.help = None
 

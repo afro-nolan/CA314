@@ -6,8 +6,8 @@ class Jail(Square):
 
 	def __init__(self, location):
 		"""Initialises a jail square"""
+		super().__init__(self, location)
 		self.prisoners = [] #List of prisoners in jail
-		self.location = location #Location of jail
 
 	def get_location(self):
 		"""Get the location of the jail"""

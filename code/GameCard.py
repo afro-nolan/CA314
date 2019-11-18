@@ -66,7 +66,7 @@ def GameCard(Card):
 			#For each player
 			for player in self.get_players():
 				#Withdraw the money from the player with the card
-				card_player.inventory..withdraw(self.get_cost())
+				card_player.inventory.withdraw(self.get_cost())
 				player.inventory.deposit(self.get_cost()) #Deposit the money in the players wallet
 		#Otherwise, just take put the money
 		else:

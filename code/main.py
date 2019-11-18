@@ -3,12 +3,13 @@ from Die import Die
 from Game import Game
 from Player import Player
 import pyglet
+from PlayerDetailWindow import PlayerDetailWindow
+#from window import GameWindow
 
-def main():
+def start_player_details_window():
 	game = Game()
-	p1 = Player("Aifric", "red", "ship", "Go")
-	print(p1.get_name())
-	p1.move()
+	playerdetailswindow = PlayerDetailWindow(1000, 800, "Monopoly", resizable=False)
+	pyglet.app.run()
 
 if __name__ == "__main__":
 	main()

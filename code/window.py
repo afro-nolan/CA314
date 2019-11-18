@@ -1,8 +1,10 @@
 import pyglet
-from main import main
+from main import start_player_details_window
 from Help import Help
 from pyglet.image.codecs.png import PNGImageDecoder
 from pyglet.gl import *
+from pyglet.window import key
+#from PlayerDetailWindow import PlayerDetailWindow
 
 class GameWindow(pyglet.window.Window):
 	"""Represents the game window"""
@@ -21,32 +23,31 @@ class GameWindow(pyglet.window.Window):
 
 	def on_draw(self):
 		"""Draws the game window. Receives labels in a list and draws each one"""
-		#self.clear()
-		#for l in labels:
-		#	l.draw()
-
-		#glEnable(GL_BLEND)
-		#glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
-		#image.blit(0,0)
-		#glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
 		self.render()
 
 	def render(self):
+		"""Renders the screen"""
 		self.clear()
 		#self.background.draw()
 		for l in labels:
 			l.draw()
-		#self.flip()
-
-		#image.blit(self.width//2,self.height//2)
 
 	def update(self, dt):
 		"""Updates the window"""
 		pass
 
-	def on_key_press(symbol, modifiers):
+	def exit_callback(self, t):
+		self.close()
+
+	def on_key_press(self, symbol, modifiers):
+		#If the user wants to start the game
 		if symbol == key.S:
-			main()
+			#Kill this window after 2 seconds
+			pyglet.clock.schedule_once(self.exit_callback , 2) 
+			#Start the player detail window
+			start_player_details_window()
+		
+		#If the user wants help
 		elif symbol == key.H:
 			rules = help_menu()
 
@@ -54,7 +55,7 @@ if __name__ == "__main__":
 	window = GameWindow(1000, 800, "Monopoly", resizable=False)
 	title_label = pyglet.text.Label('Monopoly',
                          font_name='Times New Roman',
-                         font_size=64,
+                         font_size=70,
                          x=window.width//2, y=window.height - 100,
                           anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
 	start_label = pyglet.text.Label("Press 's' to start",
@@ -73,3 +74,5 @@ if __name__ == "__main__":
 	image.anchor_x = window.width // 2
 	image.anchor_y = window.height // 2
 	pyglet.app.run()
+
+

@@ -74,15 +74,19 @@ class Player:
 		return self.square
 
 	def set_initial_bid(self, bid):
+		"""Set initial bid for auction"""
 		return bid
 
 	def make_bid(self, bid):
+		"""Make a bid in an auction"""
 		self.in_bid = True
 
 	def quit_bid(self):
+		"""Quit the bid"""
 		self.in_bid = False
 
 	def get_in_bid(self):
+		"""Enter an auction"""
 		return self.in_bid
 
 	def deal_agreed(self, agree):
@@ -94,17 +98,21 @@ class Player:
 		return counter
 
 	def reject_deal(self, reject):
+		"""Reject a deal"""
 		return reject
 
 	def counter(self, player, player_items, own_items):
+		"""Counter a deal"""
 		do_deal(player, player_items, own_items)
 
 	def want_to_buy(self, answer):
+		"""Check if player wants to buy a property"""
 		if answer is False:
 			return False
 		else:
 			return True
 
 	def stop_playing(self):
+		"""Exit the game"""
 		self.playing = False
 

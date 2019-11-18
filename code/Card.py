@@ -17,7 +17,7 @@ class Card:
 		Bank.place_card(self)
 
 	def take_card(self, player):
-		"""Take a card and put in inventory"""
+		"""Take a card and put it in"""
 		if self.keep is True:
 			Bank.cards.remove(self)
 			self.player.inventory.place_card(self)

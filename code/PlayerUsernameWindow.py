@@ -4,6 +4,7 @@ from pyglet.window import key
 import pyglet
 from pyglet.gl import *
 from pyglet.window import key
+from playerpiecestarter import start_player_piece_window
 
 class PlayerUsernameWindow(pyglet.window.Window):
 
@@ -15,7 +16,7 @@ class PlayerUsernameWindow(pyglet.window.Window):
 		self.set_location(100, 100)
 		self.labels = []
 		#self.players = players
-		self.text_label = pyglet.text.Label("Enter a username player {}:".format(0),
+		self.text_label = pyglet.text.Label("Enter a username player {}:".format(1),
                          	font_name='Times New Roman',
                          	font_size=36,
                          	x=self.width//2, y=self.height//2-50,
@@ -27,6 +28,7 @@ class PlayerUsernameWindow(pyglet.window.Window):
                           anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
 		self.labels.append(self.title_label)
 		self.labels.append(self.text_label)
+		self.username = ""
 
 	def on_draw(self):
 		"""Draws the game window. Receives labels in a list and draws each one"""
@@ -43,60 +45,61 @@ class PlayerUsernameWindow(pyglet.window.Window):
 		self.close()
 
 	def on_key_press(self, symbol, modifiers):
-		username = ""
 		if symbol == key.A:
-			username += "a"
+			self.username += "a"
 		elif symbol == key.B:
-			username += "b"
+			self.username += "b"
 		elif symbol == key.C:
-			username += "c"
+			self.username += "c"
 		elif symbol == key.D:
-			username += "d"
+			self.username += "d"
 		elif symbol == key.E:
-			username += "e"
+			self.username += "e"
 		elif symbol == key.F:
-			username += "f"
+			self.username += "f"
 		elif symbol == key.G:
-			username += "g"
+			self.username += "g"
 		elif symbol == key.H:
-			username += "h"
+			self.username += "h"
 		elif symbol == key.I:
-			username += "i"
+			self.username += "i"
 		elif symbol == key.J:
-			username += "j"
+			self.username += "j"
 		elif symbol == key.K:
-			username += "k"
+			self.username += "k"
 		elif symbol == key.L:
-			username += "l"
+			self.username += "l"
 		elif symbol == key.M:
-			username += "m"
+			self.username += "m"
 		elif symbol == key.N:
-			username += "n"
+			self.username += "n"
 		elif symbol == key.O:
-			username += "o"
+			self.username += "o"
 		elif symbol == key.P:
-			username += "p"
+			self.username += "p"
 		elif symbol == key.Q:
-			username += "q"
+			self.username += "q"
 		elif symbol == key.R:
-			username += "r"
+			self.username += "r"
 		elif symbol == key.S:
-			username += "s"
+			self.username += "s"
 		elif symbol == key.T:
-			username += "t"
+			self.username += "t"
 		elif symbol == key.U:
-			username += "v"
+			self.username += "v"
 		elif symbol == key.V:
-			username += "v"
+			self.username += "v"
 		elif symbol == key.W:
-			username += "w"
+			self.username += "w"
 		elif symbol == key.X:
-			username += "x"
+			self.username += "x"
 		elif symbol == key.Y:
-			username += "y"
+			self.username += "y"
 		elif symbol == key.Z:
-			username += "z"
-		elif symbol == key.ENTER:
-			print(username)
-		print(username)
+			self.username += "z"
+		elif symbol == key.ENTER or symbol == key.RETURN:
+			pyglet.clock.schedule_once(self.exit_callback , 2)
+			#Get their game piece
+			start_player_piece_window(self.username)
+
 	

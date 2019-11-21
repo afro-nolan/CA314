@@ -5,6 +5,7 @@ class PlayerPieceWindow(pyglet.window.Window):
 	def __init__(self,username, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 		self.username = username
+		self.gamepiece = gamepiece
 		pyglet.gl.glClearColor(0.5, 0, 0, 1)
 		self.set_location(100, 100)
 		self.labels = []
@@ -16,7 +17,7 @@ class PlayerPieceWindow(pyglet.window.Window):
 		self.text_label = pyglet.text.Label("{} choose a gamepiece:".format(self.username.capitalize()),
                          	font_name='Times New Roman',
                          	font_size=36,
-                         	x=self.width//2, y=self.height//2-50,
+                         	x=self.width//2, y=self.height//2,
                           	anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
 		self.ship_label = pyglet.text.Label("Press 1 for ship",
 							font_name='Times New Roman',
@@ -82,4 +83,24 @@ class PlayerPieceWindow(pyglet.window.Window):
 
 	def exit_callback(self, t):
 		self.close()
+
+	def on_key_press(self, symbol, modifier):
+		"""Get users input from keyboard"""
+		if symbol == key._1:
+			self.gamepiece = "ship"
+		elif symbol == key._2:
+			self.gamepiece = "car"
+		elif symbol == key._3:
+			self.gamepiece = "dog"
+		elif symbol == key._4:
+			self.gamepiece == "wheel"
+		elif symbol == key._5:
+			self.gamepiece == "iron"
+		elif symbol == key._6:
+			self.gamepiece == "hat"
+		elif symbol == key._7:
+			self.gamepiece == "thimble"
+		elif symbol == key._8:
+			self.gamepiece == "boot"
+
 

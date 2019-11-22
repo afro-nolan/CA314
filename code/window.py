@@ -13,10 +13,6 @@ class GameWindow(pyglet.window.Window):
 		"""Initialises the game window"""
 		super().__init__(*args, **kwargs)
 		self.background = pyglet.graphics.Batch()
-		#self.main_background = pyglet.sprite.Sprite(pyglet.image.load('resources/monopoly.jpg'), batch=self.background, x=0, y=0)
-		#self.background.anchor_x = 500
-		#self.background.anchor_y = 400
-		#self.background.height=800
 		self.set_location(100, 100)
 		self.frame_rate = 1/60.0
 
@@ -49,7 +45,7 @@ class GameWindow(pyglet.window.Window):
 		
 		#If the user wants help
 		elif symbol == key.H:
-			rules = help_menu()
+			rules = help_menu_starter()
 
 if __name__ == "__main__":
 	window = GameWindow(1000, 800, "Monopoly", resizable=False)

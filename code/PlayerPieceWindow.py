@@ -1,11 +1,13 @@
 import pyglet
+from pyglet.window import key
+from playercolourstarter import start_player_colour_window
 
 class PlayerPieceWindow(pyglet.window.Window):
 
 	def __init__(self,username, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 		self.username = username
-		self.gamepiece = gamepiece
+		self.gamepiece = ""
 		pyglet.gl.glClearColor(0.5, 0, 0, 1)
 		self.set_location(100, 100)
 		self.labels = []
@@ -79,7 +81,7 @@ class PlayerPieceWindow(pyglet.window.Window):
 		#self.background.draw()
 		for l in self.labels:
 			l.draw()
-			print(self.username)
+			#print(self.username)
 
 	def exit_callback(self, t):
 		self.close()
@@ -102,5 +104,8 @@ class PlayerPieceWindow(pyglet.window.Window):
 			self.gamepiece == "thimble"
 		elif symbol == key._8:
 			self.gamepiece == "boot"
+		elif symbol == key.ENTER or symbol == key.RETURN:
+			pyglet.clock.schedule_once(self.exit_callback , 2)
+			start_player_colour_window(self.username, self.gamepiece) 
 
 

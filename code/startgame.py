@@ -6,4 +6,4 @@ def start_game():
 	pyglet.app.run() #Run the game
 
 if __name__ == "__main__":
-	main()
+	start_game()

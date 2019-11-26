@@ -4,6 +4,7 @@ from pyglet.window import key
 from Game import Game
 from Inventory import Inventory
 from Player import Player
+from main import start_player_details_window
 
 class SuccessScreenWindow(pyglet.window.Window):
 	"""Represents the game window"""
@@ -50,6 +51,8 @@ if __name__ == "__main__":
 	label2 = pyglet.text.Label("with €"+ str(inventory), font_name="Times New Roman", font_size = 28,
 				x=window.width//2, y=window.height//2.75, anchor_x = 'center',
 				anchor_y='center', color=(0,0,0,255))
-
+	
 	labels = [label, label2]
+	pyglet.clock.schedule_once(window.exit_callback , 5) 
 	pyglet.app.run()
+	start_player_details_window()

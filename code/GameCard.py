@@ -15,7 +15,7 @@ def GameCard(Card):
 		return self.description
 
 	def get_type(self):
-		"""Gets the type of card, chance / community chest"""
+		"""Gets the type of card, Gain, Lose, move etc."""
 		return self.type
 
 	def get_cost(self):

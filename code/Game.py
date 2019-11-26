@@ -25,6 +25,10 @@ class Game:
 		while self.running is True:
 			self.find_first_player()
 
+	def get_players(self):
+		"""Return the players in the game"""
+		return self.players
+
 	def initialise_help(self):
 		"""Initialises help menu"""
 		self.help = Help("rule.txt")

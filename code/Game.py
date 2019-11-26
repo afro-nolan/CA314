@@ -46,7 +46,7 @@ class Game:
 
 	def initialise_bank(self):
 		"""Initialise bank"""
-		bank = Bank()
+		self.bank = Bank()
 
 	def find_first_player(self):
 		"""Find player to make first move"""
@@ -61,7 +61,7 @@ class Game:
 
 	def get_winner(self):
 		"""Get the winner"""
-		return winner
+		return self.winner
 
 	def quit_game(self):
 		"""quit the game"""

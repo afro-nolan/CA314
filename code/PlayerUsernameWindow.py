@@ -7,21 +7,25 @@ from pyglet.window import key
 from playerpiecestarter import start_player_piece_window
 
 class PlayerUsernameWindow(pyglet.window.Window):
-
-	#global players
+	"""Represents the window to get all the players user names"""
 
 	def __init__(self, players,  *args, **kwargs):
+		"""Initialises the player username window"""
 		super().__init__(*args, **kwargs)
+		#Number of players playing the game
 		self.players = players
+		#Background colour
 		pyglet.gl.glClearColor(0.5, 0, 0, 1)
-		self.set_location(100, 100)
+		self.set_location(100, 100) #Location of the window
 		self.labels = []
-		self.player_count = self.players
+		self.player_count = self.players #Count of players in game
+		#Title label
 		self.title_label = pyglet.text.Label('Monopoly',
                          font_name='Times New Roman',
                          font_size=70,
                          x=self.width//2, y=self.height - 100,
                          anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
+		#Main text
 		self.text_label = pyglet.text.Label("Enter a username player {}:".format(self.players - (self.player_count) + 1),
                          	font_name='Times New Roman',
                          	font_size=36,
@@ -29,8 +33,8 @@ class PlayerUsernameWindow(pyglet.window.Window):
                           	anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
 		self.labels.append(self.title_label)
 		self.labels.append(self.text_label)
-		self.names = []
-		self.username = ""
+		self.names = [] #List of names
+		self.username = "" #Temporary username holder
 
 	def on_draw(self):
 		"""Draws the game window. Receives labels in a list and draws each one"""
@@ -44,12 +48,11 @@ class PlayerUsernameWindow(pyglet.window.Window):
 			l.draw()
 
 	def exit_callback(self, t):
+		"""Closes the window"""
 		self.close()
 
-	def clear_screen(self):
-		self.clear()
-
 	def on_key_press(self, symbol, modifiers):
+		"""Gets keypress from user"""
 		if symbol == key.A:
 			self.username += "a"
 		elif symbol == key.B:
@@ -102,12 +105,19 @@ class PlayerUsernameWindow(pyglet.window.Window):
 			self.username += "y"
 		elif symbol == key.Z:
 			self.username += "z"
+		#If user is done typing their username
 		elif symbol == key.ENTER or symbol == key.RETURN:
+			#If there are still more players to get
 			if self.player_count > 1:
+				#Add the name to the name list
 				self.names.append(self.username)
+				#Decrement count
 				self.player_count -= 1
+				#Reset temporary username holder
 				self.username = ""
+				#Remove the text label
 				self.labels.pop()
+				#Reset with new player
 				self.text_label = pyglet.text.Label("Enter a username player {}:".format(self.players - (self.player_count) + 1),
                          	font_name='Times New Roman',
                          	font_size=36,
@@ -115,11 +125,14 @@ class PlayerUsernameWindow(pyglet.window.Window):
                           	anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
 				self.labels.append(self.text_label)
 				self.render()
+			#We are at the last player
 			else:
+				#Add the name to the name list
 				self.names.append(self.username)
 				self.player_count -= 1
+				#Set the window to close after 2 seconds
 				pyglet.clock.schedule_once(self.exit_callback , 2)
-				#Get their game piece
+				#Go to gamePiece window to let users choose gamepieces
 				start_player_piece_window(self.names, self.players)
 
 	

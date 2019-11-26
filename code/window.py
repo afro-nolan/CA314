@@ -1,10 +1,12 @@
+#Monopoly game starter - Game is run from here. 
+
 import pyglet
 from main import start_player_details_window
 from Help import Help
 from pyglet.image.codecs.png import PNGImageDecoder
 from pyglet.gl import *
 from pyglet.window import key
-#from PlayerDetailWindow import PlayerDetailWindow
+
 
 class GameWindow(pyglet.window.Window):
 	"""Represents the game window"""
@@ -24,15 +26,11 @@ class GameWindow(pyglet.window.Window):
 	def render(self):
 		"""Renders the screen"""
 		self.clear()
-		#self.background.draw()
 		for l in labels:
 			l.draw()
 
-	def update(self, dt):
-		"""Updates the window"""
-		pass
-
 	def exit_callback(self, t):
+		"""Closes the window"""
 		self.close()
 
 	def on_key_press(self, symbol, modifiers):
@@ -45,30 +43,35 @@ class GameWindow(pyglet.window.Window):
 		
 		#If the user wants help
 		elif symbol == key.H:
+			#Starts the help window
 			rules = help_menu_starter()
 
 if __name__ == "__main__":
-	window = GameWindow(1000, 800, "Monopoly", resizable=False)
+	window = GameWindow(1000, 800, "Monopoly", resizable=False) #GameWindow instance
+	#Title of screen
 	title_label = pyglet.text.Label('Monopoly',
                          font_name='Times New Roman',
                          font_size=70,
                          x=window.width//2, y=window.height - 100,
                           anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
+	#Start label
 	start_label = pyglet.text.Label("Press 's' to start",
                          font_name='Times New Roman',
                          font_size=36,
                          x=window.width//2, y=window.height//2-100,
                           anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
+	#Help label
 	help_label = pyglet.text.Label("Press 'h' for help",  
 							font_name='Times New Roman',
                           	font_size=36,
                           	x=window.width//2, y=window.height // 2 - 200,
                           	anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
+	#List of labels
 	labels = [title_label, start_label, help_label]
-	pyglet.gl.glClearColor(0.5, 0, 0, 1)
-	image = pyglet.image.load('resources/dance.png', decoder=PNGImageDecoder())
-	image.anchor_x = window.width // 2
-	image.anchor_y = window.height // 2
-	pyglet.app.run()
+	pyglet.gl.glClearColor(0.5, 0, 0, 1) #Background colour
+	#image = pyglet.image.load('resources/dance.png', decoder=PNGImageDecoder()) #Image - doesn't work yet
+	#image.anchor_x = window.width // 2 
+	#image.anchor_y = window.height // 2
+	pyglet.app.run() #Run the game
 
 

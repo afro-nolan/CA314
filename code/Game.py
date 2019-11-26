@@ -11,7 +11,7 @@ class Game:
 		"""Initialise all variables for game"""
 		self.running = True
 		self.players = []
-		self.winner = None
+		self.winner = "Aifric"
 		self.board = None
 		self.cards = []
 		self.help = None

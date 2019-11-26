@@ -6,6 +6,7 @@ from Help import Help
 from pyglet.image.codecs.png import PNGImageDecoder
 from pyglet.gl import *
 from pyglet.window import key
+from help_menu_starter import help_menu_window
 
 
 class GameWindow(pyglet.window.Window):
@@ -17,6 +18,26 @@ class GameWindow(pyglet.window.Window):
 		self.background = pyglet.graphics.Batch()
 		self.set_location(100, 100)
 		self.frame_rate = 1/60.0
+		title_label = pyglet.text.Label('Monopoly',
+                         font_name='Times New Roman',
+                         font_size=70,
+                         x=self.width//2, y=self.height - 100,
+                          anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
+		#Start label
+		start_label = pyglet.text.Label("Press 's' to start",
+                         font_name='Times New Roman',
+                         font_size=36,
+                         x=self.width//2, y=self.height//2-100,
+                          anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
+		#Help label
+		help_label = pyglet.text.Label("Press 'h' for help",  
+							font_name='Times New Roman',
+                          	font_size=36,
+                          	x=self.width//2, y=self.height // 2 - 200,
+                          	anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
+			#List of labels
+		self.labels = [title_label, start_label, help_label]
+		pyglet.gl.glClearColor(0.5, 0, 0, 1) #Background colour
 
 
 	def on_draw(self):
@@ -26,7 +47,7 @@ class GameWindow(pyglet.window.Window):
 	def render(self):
 		"""Renders the screen"""
 		self.clear()
-		for l in labels:
+		for l in self.labels:
 			l.draw()
 
 	def exit_callback(self, t):
@@ -43,8 +64,10 @@ class GameWindow(pyglet.window.Window):
 		
 		#If the user wants help
 		elif symbol == key.H:
+			#Kill this window after 2 seconds
+			pyglet.clock.schedule_once(self.exit_callback , 2) 
 			#Starts the help window
-			rules = help_menu_starter()
+			help_menu_window()
 
 if __name__ == "__main__":
 	window = GameWindow(1000, 800, "Monopoly", resizable=False) #GameWindow instance

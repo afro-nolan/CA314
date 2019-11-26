@@ -4,6 +4,7 @@ from pyglet.window import key
 from Game import Game
 from Inventory import Inventory
 from Player import Player
+import startgame
 #from main import start_player_details_window
 
 class SuccessScreenWindow(pyglet.window.Window):
@@ -38,6 +39,12 @@ class SuccessScreenWindow(pyglet.window.Window):
 	def exit_callback(self, t):
 		self.close()
 
+	def on_key_press(self, symbol, modifier):
+		if symbol == key.RETURN or symbol == key.ENTER:
+			pyglet.clock.schedule_once(self.exit_callback , 2)
+			#Start the game
+			startgame.start_game()
+
 if __name__ == "__main__":
 	window = SuccessScreenWindow(1000, 800, "Monopoly", resizable=False)
 	#sprite = pyglet.sprite.Sprite(image, x=0, y=0
@@ -53,6 +60,6 @@ if __name__ == "__main__":
 				anchor_y='center', color=(0,0,0,255))
 	
 	labels = [label, label2]
-	pyglet.clock.schedule_once(window.exit_callback , 5) 
 	pyglet.app.run()
+	#pyglet.app.run()
 	#start_player_details_window()

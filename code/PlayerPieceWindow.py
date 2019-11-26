@@ -4,19 +4,23 @@ from playercolourstarter import start_player_colour_window
 
 class PlayerPieceWindow(pyglet.window.Window):
 
-	def __init__(self,username, *args, **kwargs):
+	def __init__(self, names, players, *args, **kwargs):
 		super().__init__(*args, **kwargs)
-		self.username = username
+		self.names = names
+		self.players = players
 		self.gamepiece = ""
+		self.players_count = self.players
+		self.player_details = []
 		pyglet.gl.glClearColor(0.5, 0, 0, 1)
 		self.set_location(100, 100)
 		self.labels = []
+		self.taken = []
 		self.title_label = pyglet.text.Label('Monopoly',
                          font_name='Times New Roman',
                          font_size=70,
                          x=self.width//2, y=self.height - 100,
                           anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
-		self.text_label = pyglet.text.Label("{} choose a gamepiece:".format(self.username.capitalize()),
+		self.text_label = pyglet.text.Label("{} choose a gamepiece:".format(self.names[(self.players - self.players_count)].capitalize()),
                          	font_name='Times New Roman',
                          	font_size=36,
                          	x=self.width//2, y=self.height//2,
@@ -105,7 +109,28 @@ class PlayerPieceWindow(pyglet.window.Window):
 		elif symbol == key._8:
 			self.gamepiece == "boot"
 		elif symbol == key.ENTER or symbol == key.RETURN:
-			pyglet.clock.schedule_once(self.exit_callback , 2)
-			start_player_colour_window(self.username, self.gamepiece) 
+			if self.players_count > 1:
+				pname = self.names[(self.players - self.players_count)]
+				p = [pname, self.gamepiece]
+				self.player_details.append(p)
+				self.gamepiece = ""
+				self.players_count -= 1
+				self.labels.pop(1)
+				self.text_label = pyglet.text.Label("{} choose a gamepiece:".format(self.names[(self.players - self.players_count)].capitalize()),
+                         	font_name='Times New Roman',
+                         	font_size=36,
+                         	x=self.width//2, y=self.height//2,
+                          	anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
+				tmp_label = [self.labels[0]]
+				tmp_label.append(self.text_label)
+				tmp_label += self.labels[1:]
+				self.labels = tmp_label
+				self.render()
+			else:
+				pname = self.names[(self.players - self.players_count)]
+				p = [pname, self.gamepiece]
+				self.player_details.append(p)
+				pyglet.clock.schedule_once(self.exit_callback , 2)
+				start_player_colour_window(self.player_details) 
 
 

@@ -4,12 +4,13 @@ from gameboardstarterwindow import startgamewindow
 
 class PlayerColourWindow(pyglet.window.Window):
 
-	def __init__(self, username, gamepiece, *args, **kwargs):
+	def __init__(self, players, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 		pyglet.gl.glClearColor(0.5, 0, 0, 1)
 		self.set_location(100, 100)
-		self.username = username
-		self.gamepiece = gamepiece
+		self.player_details = players
+		self.players = len(self.player_details)
+		self.players_count = self.players
 		self.colour = ""
 		self.labels = []
 		self.title_label = pyglet.text.Label('Monopoly',
@@ -17,47 +18,47 @@ class PlayerColourWindow(pyglet.window.Window):
                          font_size=70,
                          x=self.width//2, y=self.height - 100,
                           anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
-		self.text_label = pyglet.text.Label("{} choose a colour:".format(self.username.capitalize()),
+		self.text_label = pyglet.text.Label("{} choose a colour:".format(self.player_details[(self.players - self.players_count)][0].capitalize()),
                          	font_name='Times New Roman',
                          	font_size=36,
                          	x=self.width//2, y=self.height//2,
                           	anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
-		self.red_label = pyglet.text.Label("Press 1 for red:".format(),
+		self.red_label = pyglet.text.Label("Press 1 for red",
                          	font_name='Times New Roman',
                          	font_size=36,
                          	x=self.width//2-200, y=self.height//2-100,
                           	anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
-		self.yellow_label = pyglet.text.Label("Press 2 for yellow".format(self.username.capitalize()),
+		self.yellow_label = pyglet.text.Label("Press 2 for yellow",
                          	font_name='Times New Roman',
                          	font_size=36,
                          	x=self.width//2 + 200, y=self.height//2-100,
                           	anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
-		self.lightblue_label = pyglet.text.Label("Press 3 for light blue".format(self.username.capitalize()),
+		self.lightblue_label = pyglet.text.Label("Press 3 for light blue",
                          	font_name='Times New Roman',
                          	font_size=36,
                          	x=self.width//2-200, y=self.height//2-150,
                           	anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
-		self.green_label = pyglet.text.Label("Press 4 for green".format(self.username.capitalize()),
+		self.green_label = pyglet.text.Label("Press 4 for green",
                          	font_name='Times New Roman',
                          	font_size=36,
                          	x=self.width//2+200, y=self.height//2-150,
                           	anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
-		self.pink_label = pyglet.text.Label("Press 5 for pink".format(self.username.capitalize()),
+		self.pink_label = pyglet.text.Label("Press 5 for pink",
                          	font_name='Times New Roman',
                          	font_size=36,
                          	x=self.width//2-200, y=self.height//2-200,
                           	anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
-		self.purple_label = pyglet.text.Label("Press 6 for purple".format(self.username.capitalize()),
+		self.purple_label = pyglet.text.Label("Press 6 for purple",
                          	font_name='Times New Roman',
                          	font_size=36,
                          	x=self.width//2+200, y=self.height//2-200,
                           	anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
-		self.navy_label = pyglet.text.Label("Press 7 for navy".format(self.username.capitalize()),
+		self.navy_label = pyglet.text.Label("Press 7 for navy",
                          	font_name='Times New Roman',
                          	font_size=36,
                          	x=self.width//2-200, y=self.height//2-250,
                           	anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
-		self.orange_label = pyglet.text.Label("Press 8 for orange".format(self.username.capitalize()),
+		self.orange_label = pyglet.text.Label("Press 8 for orange",
                          	font_name='Times New Roman',
                          	font_size=36,
                          	x=self.width//2+200, y=self.height//2-250,
@@ -103,9 +104,31 @@ class PlayerColourWindow(pyglet.window.Window):
 		elif symbol == key._8:
 			self.colour == "orange"
 		elif symbol == key.ENTER or symbol == key.RETURN:
-			print("{} {} {}".format(self.username, self.gamepiece, self.colour))
-			#pyglet.clock.schedule_once(self.exit_callback , 2)
-			#startgamewindow(self.username, self.gamepiece, self.colour)
+			if self.players_count > 1:
+				player = self.player_details[self.players - self.players_count]
+				player.append(self.colour)
+				self.player_details[self.players - self.players_count] = player
+				self.colour = ""
+				self.players_count -= 1
+				print(self.player_details)
+				self.labels.pop(1)
+				self.text_label = pyglet.text.Label("{} choose a colour:".format(self.player_details[(self.players - self.players_count)][0].capitalize()),
+                         	font_name='Times New Roman',
+                         	font_size=36,
+                         	x=self.width//2, y=self.height//2,
+                          	anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
+				tmp_label = [self.labels[0]]
+				tmp_label.append(self.text_label)
+				tmp_label += self.labels[1:]
+				self.labels = tmp_label
+				self.render()
+			else:
+				player = self.player_details[self.players - self.players_count]
+				player.append(self.colour)
+				self.player_details[self.players - self.players_count] = player
+				#print(self.player_details)
+				pyglet.clock.schedule_once(self.exit_callback , 2)
+				startgamewindow(self.username, self.gamepiece, self.colour)
 
 	def add_player(self):
 		"""Create a player instance and add them to the game"""

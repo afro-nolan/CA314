@@ -33,20 +33,24 @@ class GameWindow(pyglet.window.Window):
 
 	def on_key_press(self, symbol):
 		if symbol == key.S:
-			pyglet.clock.schedule_once(self.exit_callback, 2)
-			#sell screen
+			self.option = "s"
 
 		elif symbol == key.B:
-			pyglet.clock.schedule_once(self.exit_callback, 2)
-			#bankruptcy screen
+			self.option = "b"
 
 		elif symbol == key.M:
-			pyglet.clock.schedule_once(self.exit_callback, 2)
-			#mortgage screen
+			self.option = "m"
 
 		elif symbol == key.RETURN or symbol == key.ENTER:
-			pyglet.clock.schedule_once(self.exit_callback , 2)
-			#board screen
+			if self.option == "s":
+				pyglet.clock.schedule_once(self.exit_callback , 2)
+				# sell screen
+			elif self.option == "b":
+				pyglet.clock.schedule_once(self.exit_callback , 2)
+				# bankrupt screen
+			elif self.option == "m":
+				pyglet.clock.schedule_once(self.exit_callback , 2)
+				# mortgage screen
 
 if __name__ == "__main__":
 	window = GameWindow(1000, 800, "Monopoly", resizable=False)

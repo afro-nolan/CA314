@@ -46,6 +46,11 @@ class MainGameWindow(pyglet.window.Window):
                          	font_size=36,
                          	x=self.width//2+300, y=self.height//2-300,
                           	anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
+		self.action_label = pyglet.text.Label("Action Message: {}".format("The game has started."),
+								font_name='Times New Roman',
+                         		font_size=18,
+                         		x=200, y=self.height//2+300,
+                          		anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
 		self.labels.append(self.wallet_label)
 		self.labels.append(self.player_turn)
 		self.labels.append(self.help_label)
@@ -53,6 +58,7 @@ class MainGameWindow(pyglet.window.Window):
 		self.labels.append(self.roll_label)
 		self.labels.append(self.deal_label)
 		self.labels.append(self.quit_label)
+		self.labels.append(self.action_label)
 
 
 	def on_draw(self):

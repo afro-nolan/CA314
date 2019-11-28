@@ -1,26 +1,24 @@
 import pyglet
-from pyglet_gui.theme import Theme
+import sys
 
-# t = Theme({"font": "Lucida Grande",
-#             "font_size": 12,
-#             "text_color": [255, 0, 0, 255]}, resources_path='')
+class TextWindow(pyglet.window.Window):
 
-window = pyglet.window.Window()
+    def __init__(self,*args,**kwargs):
+        pyglet.window.Window.__init__(self, *args,**kwargs)
 
-theme = Theme({"font": "Lucida Grande",
-               "font_size": 12,
-               "text_color": [255, 0, 0, 255]}, resources_path='')
+        self.label = pyglet.text.Label('Bankrupt!! Better Luck next time',
+                          font_name='Times New Roman',
+                          font_size=30,
+                          x=self.width//2,
+                          y=self.height//2,
+                          anchor_x='center', anchor_y='center')
 
-label = pyglet.text.Label("Bankrupt!! Better Luck next time",
-							font_name='Times New Roman',
-							font_size = 30,
-							x= window.width /2, y = window.height/2,
-							anchor_x = 'center', anchor_y ='center')
-
-@window.event
-def on_draw():
-	window.clear()
-	label.draw()
+    def on_draw(self):
+        print('The window was drawn!')
+        sys.stdout.flush()
+        self.label.draw()
 
 
+
+TextWindow()
 pyglet.app.run()

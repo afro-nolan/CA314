@@ -1,6 +1,8 @@
 from pyglet.window import key
 import pyglet
 from gameboardstarterwindow import startgamewindow
+from Game import Game
+from Player import Player
 
 class PlayerColourWindow(pyglet.window.Window):
 	"""Represents the PlayerColourWindow. Allows players to choose their colours"""
@@ -149,9 +151,28 @@ class PlayerColourWindow(pyglet.window.Window):
 				player.append(self.colour)
 				#Place the player list back in the player details
 				self.player_details[self.players - self.players_count] = player
+				#Set up game
+				g = self.game_setup()
 				#Close the window
 				pyglet.clock.schedule_once(self.exit_callback , 2)
 				#Start the game
-				startgamewindow(self.playerdetails)
+				startgamewindow(g)
+
+	def game_setup(self):
+		"""Set Up Game"""
+		game = Game() #Game instance
+		#Create players
+		for p in self.player_details:
+			name = p[0]
+			piece = p[1]
+			colour = p[2]
+			player = Player(name, colour, piece, (0,0))
+			#Add the player to the game
+			game.add_player(player)
+
+		#Initialise cards
+		game.initialise_cards()
+		return game
+
 
 

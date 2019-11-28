@@ -1,49 +1,46 @@
 from Card import Card
 
-def GameCard(Card):
+class GameCard(Card):
 
-	def __init__(self, name, description, keep, type, cost, players, moves):
-		"""Initialises the GameCard"""
-		super().__init__(name, description, keep) #Takes attributes from parent class
-		self.type = type #Classification of card, can be (gain money, lose money, move player)
+	def __init__(self, name, description, keep, type, cost, players, location):
+		"""Initialise GameCard """
+		super().__init__(name, description, keep)
+		self.type = type
 		self.cost = cost
-		self.other_players = self.players
-		self.moves = self.moves
+		self.other_players = players
+		self.location = location
+
 
 	def get_instruction(self):
-		"""Gets the card instrucction"""
+		"""Get instruction on card"""
 		return self.description
 
 	def get_type(self):
-		"""Gets the type of card, Gain, Lose, move etc."""
-		return self.type
-
-	def get_cost(self):
-		"""Gets the cost of the card if it has one"""
+		"""Get cost of the card if it has one"""
 		return self.cost
 
-	def get_moves(self):
-		"""Gets the number of moves on the if it has them"""
-		return self.moves
+	def get_location(self):
+		"""Gets the location to move to if it has one"""
+		return self.location
 
 	def follow_instruction(self, player):
-		"""Finds the instruction of the card"""
-		if get_type() == "Gain":
+		"""Follows instruction on card"""
+		if self.get_type() == "Gain":
 			self.gain_money(player)
-		elif get_type() == "Lose":
+		elif self.get_type() == "Lose":
 			self.lose_money(player)
-		elif get_type() == "Move":
+		elif self.get_type() == "Move":
 			self.move_player(player)
-		elif get_type() == "GetOutOfJail":
+		elif self.get_type() == "GetOutOfJail":
 			self.get_jailfree_card(player)
 
 	def get_players(self):
-		"""Gets any other players involved with the card"""
+		"""Gets any other players involved in card"""
 		return self.other_players
 
 	def players_is_empty(self):
-		"""Checks if there are any other players involved"""
-		return len(self.other_players) == 0
+		"""Check if other players involved"""
+		return len(self.get_players())
 
 	def gain_money(self, card_player):
 		"""Gives the player the money specified on the card"""
@@ -53,7 +50,7 @@ def GameCard(Card):
 			for player in self.get_players():
 				#Take money out of their inventory
 				player.inventory.withdraw(self.get_cost())
-				card_player.inventory.deposit(self.get_cost()) #Give it to the player with the card
+				card_player.inventory.deposit(self.get_cost()) #Give i
 		#Otherwise just give the player the money
 		else:
 			Bank.withdraw(self.get_cost())
@@ -74,16 +71,8 @@ def GameCard(Card):
 
 	def move_player(self, card_player):
 		"""Move the player a certain amount of spaces"""
-		card_player.move(self.get_moves())
+		#card_player.move(self.get_moves())
 
 	def get_jailfree_card(self, card_player):
 		"""Get a get out of jail free card"""
-		Bank.cards.remove(self)
 		card_player.inventory.place_card(self)
-
-
-
-
-			
-
-		

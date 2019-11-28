@@ -1,6 +1,5 @@
 from Board import Board
 from Card import Card
-from Bank import Bank
 from GameCard import GameCard
 from Help import Help
 
@@ -11,10 +10,12 @@ class Game:
 		"""Initialise all variables for game"""
 		self.running = True
 		self.players = []
-		self.winner = "Aifric"
+		self.winner = None
 		self.board = None
-		self.cards = []
+		self.chance = None #Holds chance cards
+		self.community_chest = None
 		self.help = None
+		self.turn = None
 
 	def add_player(self, player):
 		"""Add a player to a game"""
@@ -40,8 +41,17 @@ class Game:
 
 	def initialise_cards(self):
 		"""Initialise the cards"""
-		gc1 = GameCard("Chance", "It's your birthday! Collect €10 from each player", False, "Chance", 10, self.players, 0)
-		self.cards.append(gc1)
+		self.chance = {
+			GameCard("Chance Card", "Take a trip to King's Cross Station. If you pass Go collect 200.", False, "Move", None, None, "King's Cross Station" ) : "resources/chance1.jpg",
+			GameCard("Chance Card", "You have been elected Chairman of the Board. Pay each player 50.", False, "Lose", 50, self.players, None) : "resources/chance3.jpg",
+			GameCard("Chance Card", "Advance to the nearest utility. If unowned you may buy it from the bank. If owned, throw dice and pay owner a total ten times thrown.", False, "Move", None, None, "Utility") : "resources/chance4.jpg",
+			GameCard("Chance Card", "Go back three spaces.", False, "Move", None, None, -3 ) : "resources/chance5.jpg",
+			GameCard("Chance Card", "Your building loan matures. Collect 150.", False, "Gain", 150, None, None ) : "resources/chance6.jpg",
+			GameCard("Chance Card", "Advance to Pall Mall. If you pass go collect 200.", False, "Move", None, None, "Pall Mall") : "resources/chance7.jpg",
+			GameCard("Chance Card", "Make general repairs on all your property: For each house pay 25, for each hotel pay 100.", False, "Lose", (25, 100), None, None) :"resources/chance8.jpg",
+			GameCard("Chance Card","Go to Jail. Go directly to jail, Do not pass Go, Do not collect 200.", False, "Jail", None, None, "Jail") : "resources/chance9.jpg",
+			GameCard("Chance Card", "Get out of jail Free. This card may be kept until needed or traded", True, "GetOutOfJail", None, None, None) : "resources/chance12.jpg",
+		}
 		
 
 	def initialise_bank(self):
@@ -57,7 +67,7 @@ class Game:
 			if roll > highest:
 				highest = roll
 				first = player
-		return first
+		self.turn = first
 
 	def get_winner(self):
 		"""Get the winner"""

@@ -12,7 +12,7 @@ class Player:
 		self.inventory = Inventory() #Player's inventory
 		self.location = location #Location of Player's GamePiece. This is a tuple
 		self.dice = Die() #Player's Dice
-		self.square = square #This is the square the player is on
+		self.square = None #This is the square the player is on
 		self.in_bid = False #Is the player bidding in an auction
 		self.playing = True #Is the player still playing?
 

@@ -7,6 +7,5 @@ from PlayerDetailWindow import PlayerDetailWindow
 #from window import GameWindow
 
 def start_player_details_window():
-	game = Game()
 	playerdetailswindow = PlayerDetailWindow(1000, 800, "Monopoly", resizable=False)
 	pyglet.app.run()

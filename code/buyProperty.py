@@ -2,7 +2,7 @@ import pyglet
 from pyglet.window import key
 
 window = pyglet.window.Window()
-image  = pyglet.resource.image('titledeed.jpg')
+image  = pyglet.resource.image('resources/titledeed.jpg')
 
 label = pyglet.text.Label("                                         Enter B or A" ,
                             font_name='Times New Roman',

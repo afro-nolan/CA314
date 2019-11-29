@@ -20,5 +20,5 @@ class BankruptWindow(pyglet.window.Window):
 
 
 
-TextWindow()
+BankruptWindow()
 pyglet.app.run()

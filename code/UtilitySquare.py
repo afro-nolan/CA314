@@ -16,6 +16,9 @@ class UtilitySquare(Square):
 	def get_location(self):
 		return self.location
 
+	def get_name(self):
+		return self.name
+
 	def buy_utility(self, player):
 		if check_ownership() is False:
 			player.inventory.place_card(self.title_deed_card)

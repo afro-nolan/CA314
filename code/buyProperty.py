@@ -1,6 +1,7 @@
 import pyglet
 from pyglet.window import key
 import sys
+import Player
 
 
 
@@ -16,17 +17,23 @@ class PropertyWindow(pyglet.window.Window):
         self.labels = []
         self.card  = pyglet.resource.image('resources/titledeed.jpg') #title deed card
         self.player = game.get_turn() #get player whosed turn it is
-        #Title label
-        self.title_label = pyglet.text.Label("{} landed on {}".format(self.player.get_name(), self.player.get_square().get_name()),
+        self.title_label = pyglet.text.Label("{} landed on {}".format(self.player.get_name().capitalize(), self.player.get_square().get_name()),
                             font_name='Times New Roman',
                             font_size=36,
-                            x=self.width//2+300, y=self.height//2 + 300,
+                            x=self.width//2, y=self.height//2+300,
                             anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
-        #Text Label
-        self.text_label = pyglet.text.Label("Press 'b' to buy or 'A' to auction",
+        if self.player.get_square().check_ownership() == False:
+            #Text Label
+            self.text_label = pyglet.text.Label("Press 'b' to buy or 'A' to auction",
                             font_name='Times New Roman',
                             font_size=36,
-                            x=self.width//2+300, y=self.height//2 + 400,
+                            x=self.width//2, y=self.height//2+200,
+                            anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
+        else:
+            self.text_label = pyglet.text.Label("{} owns this property. You must pay them {} in rent.".format(self.player.get_square().get_owner(), self.player.get_square().get_rent()),
+                            font_name='Times New Roman',
+                            font_size=36,
+                            x=self.width//2, y=self.height//2+200,
                             anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
         self.labels.append(self.text_label)
         self.labels.append(self.title_label)
@@ -42,6 +49,12 @@ class PropertyWindow(pyglet.window.Window):
 
         elif symbol == key.B:
             print("B key was pressed")
+
+        elif symbol == key.ENTER or symbol == key.RETURN:
+            from gameboardstarterwindow import startgamewindow
+            pyglet.clock.schedule_once(self.exit_callback , 2)
+            startgamewindow(self.game)
+
 
     def on_draw(self):
         """Draw the screen"""

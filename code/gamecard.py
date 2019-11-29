@@ -10,7 +10,6 @@ class GameCard(Card):
 		self.other_players = players
 		self.location = location
 
-
 	def get_instruction(self):
 		"""Get instruction on card"""
 		return self.description

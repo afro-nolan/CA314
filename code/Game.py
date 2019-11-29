@@ -22,7 +22,7 @@ class Game:
 		"""Initialise all variables for game"""
 		self.running = True
 		self.players = []
-		self.winner = None
+		self.winner = "Aifric"
 		self.board = None
 		self.bank = None
 		self.chance = None #Holds chance cards
@@ -115,7 +115,7 @@ class Game:
 		"""Initialise bank"""
 		self.bank = Bank()
 		#Allocate money to each player
-		self.bank.allocate_money(self.players)
+		#self.bank.allocate_money(self.players)
 
 	def find_first_player(self):
 		"""Find player to make first move"""
@@ -162,7 +162,7 @@ class Game:
 
 	def get_turn(self):
 		"""Get the current players turn"""
-		return self.get_turn
+		return self.turn
 
 
 

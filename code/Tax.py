@@ -20,4 +20,5 @@ class Tax(Square):
 		"""Play the tax of the square"""
 		player.inventory.withdraw(self.get_price()) #Withdraw tax from the player's wallet
 		bank.deposit(self.get_price()) #Deposit the tax in the bank
+		print("in pay tax functoin")
 

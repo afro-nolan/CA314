@@ -6,7 +6,7 @@ class Inventory:
 		"""Initiate the inventory"""
 		self.properties = {} #Properties stored in a dictionary, keys are properties, values are mortgaged or unmortgaged
 		self.cards = [] #List of cards
-		self.wallet = 0 #Player's money
+		self.wallet = 1500 #Player's money
 
 	def place_property(self, property):
 		"""Place the property in the inventory"""

@@ -66,6 +66,8 @@ class Player:
 			self.location += moves
 		else:
 			self.location += moves
+		if self.location > 40: 
+			self.location -= 40
 		pos_on_board = self.get_location() #Tuple position for square on board
 		self.piece.update_positions(pos_on_board) #Update game piece
 		return moves

@@ -29,8 +29,8 @@ class Station:
 			pay_rent(player)
 
 	def pay_rent(self, player):
-		player.withdraw(self.title_deed_card.rent)
-		Bank.deposit(self.title_deed_card.rent)
+		player.withdraw(self.get_rent())
+		Bank.deposit(self.get_rent())
 
 	def check_ownership(self):
 		return self.owned
@@ -40,5 +40,9 @@ class Station:
 
 	def set_owned(self, own):
 		self.owned = own
+
+	def get_rent(self):
+		return self.title_deed_card.get_rent_price()
+
 
 

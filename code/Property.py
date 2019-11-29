@@ -101,4 +101,7 @@ class Property:
 	def get_owner(self):
 		return self.owner
 
+	def get_name(self):
+		return self.name
+
 

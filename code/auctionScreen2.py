@@ -34,7 +34,7 @@ class TextWidget(object):
                 0 < y - self.layout.y < self.layout.height)
 
 
-class Window(pyglet.window.Window):
+class AuctionWindow(pyglet.window.Window):
     def __init__(self, *args, **kwargs):
         super(Window, self).__init__(400, 140, caption='Player Enter Bid')
 
@@ -127,5 +127,5 @@ class Window(pyglet.window.Window):
             self.focus.caret.mark = 0
             self.focus.caret.position = len(self.focus.document.text)
 
-window = Window(resizable=True)
+window = AuctionWindow(resizable=True)
 pyglet.app.run()

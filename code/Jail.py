@@ -4,9 +4,9 @@ from Square import Square
 class Jail(Square):
 	"""Represents a jail square"""
 
-	def __init__(self, location):
+	def __init__(self, name, location):
 		"""Initialises a jail square"""
-		super().__init__(self, location)
+		super().__init__(name, location)
 		self.prisoners = [] #List of prisoners in jail
 
 	def get_location(self):

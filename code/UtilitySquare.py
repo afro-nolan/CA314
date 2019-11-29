@@ -2,8 +2,8 @@ from Square import Square
 
 class UtilitySquare(Square):
 
-	def __init__(self, name, type, location, title_deed_card, cost):
-		super().__init__(name, type, location)
+	def __init__(self, name, location, title_deed_card, cost):
+		super().__init__(name, location)
 		self.cost = cost
 		self.owned = False
 		self.owner = False

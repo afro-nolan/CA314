@@ -4,7 +4,7 @@ from Square import Square
 class FreeParking(Square):
 
 
-	def __init__(self):
+	def __init__(self,name ,location):
 		"""Initialise free parking space"""
 		super().__init__(name, location)
 

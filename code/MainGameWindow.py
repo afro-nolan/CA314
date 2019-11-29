@@ -4,6 +4,16 @@ import Game
 from inventorywindowstarter import start_inventory_window
 from propertyscreenstarter import propertyscreenstarter
 import time
+from cardwindowstarter import cardwindowstarter
+from utilityscreenstarter import utilityscreenstarter
+from stationscreenstarter import stationscreenstarter
+from Property import Property
+from CardSquare import CardSquare
+from UtilitySquare import UtilitySquare
+from FreeParking import FreeParking
+from GoToJail import GoToJail
+from Station import Station
+from Tax import Tax
 
 class MainGameWindow(pyglet.window.Window):
 	"""Main Game Window"""
@@ -15,7 +25,6 @@ class MainGameWindow(pyglet.window.Window):
 		self.set_location(100, 100) #Set the location of the window
 		self.board_image = pyglet.image.load("resources/monboard.jpeg")
 		self.labels = []
-		self.game.start_game()
 		#Get player's turn
 		self.player = self.game.get_player_turn()
 		
@@ -54,6 +63,11 @@ class MainGameWindow(pyglet.window.Window):
                          	font_size=24,
                          	x=self.width//2+300, y=self.height//2-300,
                           	anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
+		self.next_move_label = pyglet.text.Label("Press 'f' to finish your turn.",
+								font_name='Times New Roman',
+                         		font_size=24,
+                         		x=self.width//2+300, y=self.height//2-330,
+                          		anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
 		self.action_label = pyglet.text.Label("Action: {}".format("The game has started."),
 								font_name='Times New Roman',
                          		font_size=18,
@@ -124,9 +138,7 @@ class MainGameWindow(pyglet.window.Window):
                          		x=210, y=self.height//2+300,
                           		anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
 			self.labels.append(self.action_label)
-			#Close the window
-			pyglet.clock.schedule_once(self.exit_callback , 2)
-			propertyscreenstarter(self.game)
+			self.check_landing()
 
 
 	def get_square(self):
@@ -134,6 +146,46 @@ class MainGameWindow(pyglet.window.Window):
 		for sq in self.game.board.squares:
 			if sq.location == self.player.get_location():
 				self.player.set_square(sq)
+
+	def check_landing(self):
+		#Square player has landed on
+		sq = self.player.get_square()
+		#If it is a property, go to property square
+		if isinstance(sq, Property):
+			#Close the window
+			pyglet.clock.schedule_once(self.exit_callback , 2)
+			propertyscreenstarter(self.game)
+
+		#If it is a tax square, pay tax
+		elif isinstance(sq, Tax):
+			sq.pay_tax(self.player, self.game.get_bank())
+
+		#If it is a card square
+		elif isinstance(sq, CardSquare):
+			#Close the window
+			pyglet.clock.schedule_once(self.exit_callback , 2)
+			cardwindowstarter(self.game)
+
+		#If it is a utility
+		elif isinstance(sq, UtilitySquare):
+			pyglet.clock.schedule_once(self.exit_callback, 2)
+			utilityscreenstarter(self.game)
+
+		#If it is a station
+		elif isinstance(sq, Station):
+			pyglet.clock.schedule_once(self.exit_callback, 2)
+			stationscreenstarter(self.game)
+
+		#If it is go to jail 
+		elif isinstance(sq, GoToJail):
+			pass
+
+		#If it is jail or free parking
+		else:
+			return
+
+
+
 
 
 

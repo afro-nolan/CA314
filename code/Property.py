@@ -1,8 +1,9 @@
 
 class Property:
 
-	def __init__(self, title_deed_card, location, owned, owner):
+	def __init__(self, name, title_deed_card, location, owned, owner):
 		"""Initiate Property"""
+		self.name = name
 		self.title_deed_card = title_deed_card #Title Deed Card
 		self.location = location #Location of property
 		self.houses = 0 #Count of houses on property

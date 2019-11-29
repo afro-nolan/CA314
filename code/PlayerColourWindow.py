@@ -173,7 +173,7 @@ class PlayerColourWindow(pyglet.window.Window):
 			game.add_player(player)
 
 		#Initialise cards
-		game.initialise_cards()
+		game.start_game()
 		return game
 
 

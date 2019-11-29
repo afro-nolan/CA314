@@ -1,12 +1,13 @@
-from pyglet.window import key
 import pyglet
 
-class CardWindow(pyglet.window.Window):
-	"""Represents the card window"""
+class StationWindow(pyglet.window.Window):
 
 	def __init__(self, game, *args, **kwargs):
 		super().__init__(*args, **kwargs)
+		self.game = game #game
+		pyglet.gl.glClearColor(0.3,0.4,0.5, 1) #Background colour
 		self.set_location(100, 100) #Set the location of the window
+		self.labels = []
 
 	def on_draw(self):
 		"""Draws on the screen"""
@@ -23,5 +24,3 @@ class CardWindow(pyglet.window.Window):
 	def exit_callback(self, t):
 		"""Exit the window"""
 		self.close()
-
-

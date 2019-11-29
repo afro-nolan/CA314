@@ -4,6 +4,16 @@ from GameCard import GameCard
 from Help import Help
 from Bank import Bank
 from Square import Square
+from Station import Station
+from Go import Go
+from Property import Property
+from UtilitySquare import UtilitySquare
+from Tax import Tax
+from Jail import Jail
+from TitleDeedCard import TitleDeedCard
+from CardSquare import CardSquare
+from FreeParking import FreeParking
+from GoToJail import GoToJail
 
 class Game:
 	"""Class Game manages the running of the game"""
@@ -14,6 +24,7 @@ class Game:
 		self.players = []
 		self.winner = None
 		self.board = None
+		self.bank = None
 		self.chance = None #Holds chance cards
 		self.community_chest = None #Holds community chest cards
 		self.help = None
@@ -23,6 +34,9 @@ class Game:
 		"""Add a player to a game"""
 		self.players.append(player)
 
+	def get_bank(self):
+		return self.bank
+
 	def start_game(self):
 		"""start the game and enable the window"""
 		self.get_player_turn()
@@ -30,6 +44,7 @@ class Game:
 		self.initialise_bank()
 		#Initialise the board
 		self.initialise_board()
+		self.initialise_cards()
 
 	def get_players(self):
 		"""Return the players in the game"""
@@ -37,46 +52,46 @@ class Game:
 
 	def initialise_board(self):
 		"""Initialise the board"""
-		s1 = Square("Go", 0)
-		s2 = Square("Crumlin", 1)
-		s3 = Square("Community Chest", 2)
-		s4 = Square("Kimmage", 3)
-		s5 = Square("Income Tax", 4)
-		s6 = Square("Busaras Dublin", 5)
-		s7 = Square("Rathgar Road", 6)
-		s8 = Square("Chance", 7)
-		s9 = Square("South Circular Road", 8)
-		s10 = Square("Rathmines Road", 9)
-		s11 = Square("Jail", 10)
-		s12 = Square("Dawson Street", 11)
-		s13 = Square("Electric Company", 12)
-		s14 = Square("Kildare Street", 13)
-		s15 = Square("Nassau Street", 14)
-		s16 = Square("Dublin Airport", 15)
-		s17 = Square("Pearse Street", 16)
-		s18 = Square("Community Chest", 17)
-		s19 = Square("Dame Street", 18)
-		s20 = Square("Westmoreland Street", 19)
-		s21 = Square("Free Parking", 20)
-		s22 = Square("Abbey Street", 21)
-		s23 = Square("Chance", 22)
-		s24 = Square("Capel Street", 23)
-		s25 = Square("Henry Street", 24)
-		s26 = Square("Heuston Station", 25)
-		s27 = Square("Talbot Street", 26)
-		s28 = Square("North Earl Street", 27)
-		s29 = Square("Waterworks", 28)
-		s30 = Square("O'Connell Street", 29)
-		s31 = Square("Go To Jail", 30)
-		s32 = Square("George's Street", 31)
-		s33 = Square("Wicklow Street", 32)
-		s34 = Square("Community Chest", 33)
-		s35 = Square("Grafton Street", 34)
-		s36 = Square("Shannon Airport", 35)
-		s37 = Square("Chance", 36)
-		s38 = Square("Ailesbury Road", 37)
-		s39 = Square("Super Tax", 38)
-		s40 = Square("Shrewsbury Road", 39)
+		s1 = Go("Go", 0)
+		s2 = Property("Crumlin", TitleDeedCard("Crumlin", True, 60, 30,[2,10,30,90,160,250], "A", "brown",50, 50), 1, False, None)
+		s3 = CardSquare("Community Chest", 2)
+		s4 = Property("Kimmage", TitleDeedCard("Kimmage", True, 60, 30, [4,20,60,180,320,450], "A", "brown", 50, 50), 3, False, None)
+		s5 = Tax("Income Tax", 4, 200)
+		s6 = Station("Busaras Dublin", False, False, 200, TitleDeedCard("Busaras Dublin", True, 200, 100, [25, 50, 100, 200], "B", None, None, None), 5)
+		s7 = Property("Rathgar Road", TitleDeedCard("Rathgar Road", True, 100, 50, [6,30,90,270,400,550], "C", "lightblue", 50, 50), 6, False, None)
+		s8 = CardSquare("Chance", 7)
+		s9 = Property("South Circular Road", TitleDeedCard("South Circular Road", True, 100, 50, [6,30,90,270,400,550], "C", "lightblue", 50, 50), 8, False, None)
+		s10 = Property("Rathmines Road", TitleDeedCard("Rathmines Road", True, 120, 60, [8, 40, 100, 300, 450, 600], "C", "lightblue", 50, 50), 9, False, None)
+		s11 = Jail("Jail", 10)
+		s12 = Property("Dawson Street", TitleDeedCard("Dawson Street", True, 140, 70, [10, 50, 150, 450, 625, 750], "D", "pink", 100, 100), 11, False, None)
+		s13 = UtilitySquare("Electric Company", 12, TitleDeedCard("Electric Company", True, 150, 75, [4, 10], "E", None, None, None), 150)
+		s14 = Property("Kildare Street", TitleDeedCard("Kildare Street", True, 140, 70, [10, 50, 150, 450, 625, 750], "D", "pink", 100, 100), 13, False, None)
+		s15 = Property("Nassau Street", TitleDeedCard("Nassau Street", True, 160, 80, [12, 60, 180, 500, 700, 900], "D", "pink", 100, 100), 14, False, None)
+		s16 = Station("Dublin Airport", False, None, 200, TitleDeedCard("Dublin Airport", True, 200, 100, [25, 50, 100, 200], "B", None, None, None), 15)
+		s17 = Property("Pearse Street", TitleDeedCard("Pearse Street", True, 180, 90, [14, 70, 200, 550, 750, 950], "F", "orange", 100, 100), 16, False, None)
+		s18 = CardSquare("Community Chest", 17)
+		s19 = Property("Dame Street",TitleDeedCard("Dame Street", True, 180, 90, [14, 70, 200, 550, 750, 950], "F", "orange", 100, 100), 18, False, None)
+		s20 = Property("Westmoreland Street", TitleDeedCard("Westmoreland Street", True, 200, 100, [16, 80, 220, 600, 800, 1000], "F", "orange", 100, 100), 19, False, None)
+		s21 = FreeParking("Free Parking", 20)
+		s22 = Property("Abbey Street", TitleDeedCard("Abbey Street", True, 220, 110, [18, 90, 250, 700, 875, 1050], "G", "red", 150, 150), 21, False, None)
+		s23 = CardSquare("Chance", 22)
+		s24 = Property("Capel Street", TitleDeedCard("Capel Street", True, 220, 110, [18, 90, 250, 700, 875, 1050], "G", "red", 150, 150), 23, False, None)
+		s25 = Property("Henry Street", TitleDeedCard("Henry Street", True, 240, 120, [20, 100, 300, 750, 925, 1100], "G", "red", 150, 150), 24, False, None)
+		s26 = Station("Heuston Station", False, False, 200, TitleDeedCard("Heuston Station", True, 200, 100, [25, 50, 100, 200], "B", None, None, None), 25)
+		s27 = Property("Talbot Street", TitleDeedCard("Talbot Street", True, 260, 130, [22, 110, 330, 800, 975, 1150], "H", "yellow", 150, 150), 26, False, None)
+		s28 = Property("North Earl Street", TitleDeedCard("North Earl Street", True, 260, 130, [22, 110, 330, 800, 975, 1150], "H", "yellow", 150, 150), 27, False, None)
+		s29 = UtilitySquare("Waterworks", 28, TitleDeedCard("Waterworks", True, 150, 75, [4, 10], "E", None, None, None), 150)
+		s30 = Property("O'Connell Street", TitleDeedCard("O'Connell Street", True, 280, 140, [24, 120, 360, 850, 1025, 1200], "H", "yellow", 150, 150), 29, False, None)
+		s31 = GoToJail("Go To Jail", 30)
+		s32 = Property("George's Street", TitleDeedCard("George's Street", True, 300, 150, [26, 130, 390, 900, 1100, 1275], "I", "green", 200, 200), 31, False, None)
+		s33 = Property("Wicklow Street", TitleDeedCard("Wicklow Street", True, 300, 150, [26, 130, 390, 900, 1100, 1275], "I", "green", 200, 200), 32, False, None)
+		s34 = CardSquare("Community Chest", 33)
+		s35 = Property("Grafton Street", TitleDeedCard("Grafton Street", True, 320, 160, [28, 150, 450, 1000, 1200, 1400], "I", "green", 200, 200), 34, False, None)
+		s36 = Station("Shannon Airport", False, None, 200, TitleDeedCard("Shannon Airport", True, 200, 100, [25,50,100,200], "B", None, None, None), 35)
+		s37 = CardSquare("Chance", 36)
+		s38 = Property("Ailesbury Road", TitleDeedCard("Ailesbury Road", True, 350, 175, [35, 175, 500, 1100, 1300, 1500], "J", "navy", 200, 200), 37, False, None)
+		s39 = Tax("Super Tax", 38, 100)
+		s40 = Property("Shrewsbury Road", TitleDeedCard("Shrewsbury Road", True, 400, 200, [50, 200, 600, 1400, 1700, 2000], "J", "navy", 200, 200), 39, False, None)
 		squares = [s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24, s25, s26, s27, s28, s29, s30, s31, s32, s33, s34, s35, s36, s37, s38, s39, s40]
 		for player in self.players:
 			player.set_square(s1)

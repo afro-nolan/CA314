@@ -2,6 +2,7 @@ from pyglet.window import key
 import pyglet
 import Game
 from inventorywindowstarter import start_inventory_window
+from propertyscreenstarter import propertyscreenstarter
 import time
 
 class MainGameWindow(pyglet.window.Window):
@@ -123,6 +124,9 @@ class MainGameWindow(pyglet.window.Window):
                          		x=210, y=self.height//2+300,
                           		anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
 			self.labels.append(self.action_label)
+			#Close the window
+			pyglet.clock.schedule_once(self.exit_callback , 2)
+			propertyscreenstarter(self.game)
 
 
 	def get_square(self):

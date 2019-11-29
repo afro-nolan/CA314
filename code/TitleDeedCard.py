@@ -24,3 +24,6 @@ class TitleDeedCard(Card):
 
 	def get_rent_price(self):
 		return self.rent
+
+	def get_name(self):
+		return self.name

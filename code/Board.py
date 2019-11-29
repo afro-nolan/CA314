@@ -6,5 +6,3 @@ class Board:
 		self.dimensions = (11,11) #The dimensions of the board
 		self.num_squares = 40 #Number of squares on the board
 		self.squares = squares #A list of squares on the board
-		self.posx = posz #X Position of the board on the screen
-		self.posy = posy #Y Position of the board on the screen

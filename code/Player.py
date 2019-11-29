@@ -1,24 +1,29 @@
 from Inventory import Inventory
 from Die import Die
 from Bank import Bank
+from GamePiece import GamePiece
+from Board import Board
 
 class Player:
 
-	def __init__(self, name, colour, piece, location):
+	def __init__(self, name, colour, piece, location, square=None):
 		"""Initialises Player"""
 		self.name = name #name of player
 		self.colour = colour #Player's colour
 		self.piece = piece #Player's piece
 		self.inventory = Inventory() #Player's inventory
-		self.location = location #Location of Player's GamePiece. This is a tuple
+		self.location = location #Location of Player's GamePiece. This is an int. The square number
 		self.dice = Die() #Player's Dice
-		self.square = None #This is the square the player is on
+		self.square = square #This is the square the player is on
 		self.in_bid = False #Is the player bidding in an auction
 		self.playing = True #Is the player still playing?
 
 	def get_name(self):
 		"""return the name of the player"""
 		return self.name
+
+	def set_square(self, sq):
+		self.square = sq
 
 	def do_deal(self, player, player_items, own_items):
 		"""Do a deal with a player. Takes a player that they are dealing with and a list of items to trade"""
@@ -56,14 +61,14 @@ class Player:
 
 	def move(self, moves=None):
 		"""Move the player's game piece"""
-		if move is None:
+		if moves is None:
 			moves = self.dice.roll()
 			self.location += moves
 		else:
 			self.location += moves
 		pos_on_board = self.get_location() #Tuple position for square on board
-		self.piece.update_position(pos_on_board[0], pos_on_board[1]) #Update game piece
-
+		self.piece.update_positions(pos_on_board) #Update game piece
+		return moves
 
 	def get_location(self):
 		"""Get the location of the player"""
@@ -115,4 +120,5 @@ class Player:
 	def stop_playing(self):
 		"""Exit the game"""
 		self.playing = False
+
 

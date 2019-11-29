@@ -1,7 +1,7 @@
 import pyglet
 import sys
 
-class TextWindow(pyglet.window.Window):
+class BankruptWindow(pyglet.window.Window):
 
     def __init__(self,*args,**kwargs):
         pyglet.window.Window.__init__(self, *args,**kwargs)

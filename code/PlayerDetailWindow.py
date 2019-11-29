@@ -1,5 +1,4 @@
 import pyglet
-from Help import Help
 from pyglet.image.codecs.png import PNGImageDecoder
 from pyglet.gl import *
 from pyglet.window import key

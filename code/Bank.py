@@ -1,4 +1,5 @@
 
+
 class Bank:
 
 	def __init__(self):
@@ -8,8 +9,13 @@ class Bank:
 		self.properties = []
 		self.cards = []
 
-	def allocate_money(self):
-		pass
+	def allocate_money(self, players):
+		for player in players:
+			if player.inventory.check_balance() == 0:
+				player.inventory.deposit(1500)
+			else:
+				return
+		
 
 	def get_house_count(self):
 		return self.houses

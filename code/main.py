@@ -1,7 +1,3 @@
-#from Game import Game
-from Die import Die
-from Game import Game
-from Player import Player
 import pyglet
 from PlayerDetailWindow import PlayerDetailWindow
 #from window import GameWindow

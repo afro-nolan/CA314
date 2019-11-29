@@ -3,6 +3,7 @@ import pyglet
 from gameboardstarterwindow import startgamewindow
 from Game import Game
 from Player import Player
+from GamePiece import GamePiece
 
 class PlayerColourWindow(pyglet.window.Window):
 	"""Represents the PlayerColourWindow. Allows players to choose their colours"""
@@ -165,8 +166,9 @@ class PlayerColourWindow(pyglet.window.Window):
 		for p in self.player_details:
 			name = p[0]
 			piece = p[1]
+			piece = GamePiece(piece, 0)
 			colour = p[2]
-			player = Player(name, colour, piece, (0,0))
+			player = Player(name, colour, piece, 0)
 			#Add the player to the game
 			game.add_player(player)
 

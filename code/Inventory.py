@@ -45,7 +45,7 @@ class Inventory:
 		"""Withdraw money from the wallet"""
 		self.wallet -= amount
 
-	def check_balance(self, amount):
+	def check_balance(self):
 		"""Check the balance of the balance"""
 		return self.wallet
 

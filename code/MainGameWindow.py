@@ -21,6 +21,7 @@ class MainGameWindow(pyglet.window.Window):
 	def __init__(self, game, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 		self.game = game #game
+		#pyglet.gl.glClearColor(0.3,0.2,0.7, 1) #Background colour
 		pyglet.gl.glClearColor(0.3,0.4,0.5, 1) #Background colour
 		self.set_location(100, 100) #Set the location of the window
 		self.board_image = pyglet.image.load("resources/monboard.jpeg")
@@ -150,6 +151,7 @@ class MainGameWindow(pyglet.window.Window):
 	def check_landing(self):
 		#Square player has landed on
 		sq = self.player.get_square()
+		#print("{} - {}".format(sq.get_name(), self.player.square.get_name()))
 		#If it is a property, go to property square
 		if isinstance(sq, Property):
 			#Close the window
@@ -158,9 +160,7 @@ class MainGameWindow(pyglet.window.Window):
 
 		#If it is a tax square, pay tax
 		elif isinstance(sq, Tax):
-			print(sq.get_name())
 			sq.pay_tax(self.player, self.game.get_bank())
-			print("tax paid")
 			self.labels.pop(0)
 			self.wallet_label = pyglet.text.Label("{}'s Wallet: €{}".format(self.player.name.capitalize(), self.player.inventory.check_balance()),
                          	font_name='Times New Roman',
@@ -168,8 +168,6 @@ class MainGameWindow(pyglet.window.Window):
                          	x=self.width//2+300, y=self.height//2 + 300,
                           	anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
 			self.labels[0] = self.wallet_label
-			print(self.player.inventory.wallet)
-			print(self.player.inventory.check_balance())
 
 		#If it is a card square
 		elif isinstance(sq, CardSquare):

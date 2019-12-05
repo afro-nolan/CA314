@@ -11,6 +11,8 @@ class CardWindow(pyglet.window.Window):
 		pyglet.gl.glClearColor(0.3,0.4,0.5, 1) #Background colour
 		self.set_location(100, 100) #Set the location of the window
 		self.labels = []
+		self.player = self.game.get_player_turn()
+		print(self.player.get_square().get_name())
 		self.card = ""
 		self.card_image = ""
 		#Title Label

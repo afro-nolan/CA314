@@ -12,11 +12,10 @@ class CardWindow(pyglet.window.Window):
 		self.set_location(100, 100) #Set the location of the window
 		self.labels = []
 		self.player = self.game.get_player_turn()
-		print(self.player.get_square().get_name())
 		self.card = ""
 		self.card_image = ""
 		#Title Label
-		self.title_label = pyglet.text.Label('You landed on a card space!',
+		self.title_label = pyglet.text.Label('{} landed on a card space!'.format(self.player.get_name().capitalize()),
                          font_name='Times New Roman',
                          font_size=48,
                          x=self.width//2, y=self.height - 100,

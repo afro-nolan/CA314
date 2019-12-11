@@ -6,10 +6,14 @@ class StationWindow(pyglet.window.Window):
 	def __init__(self, game, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 		self.game = game #game
-		self.player = self.game.get_player_turn()
 		pyglet.gl.glClearColor(0.3,0.4,0.5, 1) #Background colour
 		self.set_location(100, 100) #Set the location of the window
 		self.labels = []
+		self.player = self.game.get_turn() #get player whosed turn it is
+		self.sq = self.player.get_square() #square player is on
+		print("station")
+		self.card = pyglet.resource.image(self.sq.get_title_deed_card().get_image()) #title deed card
+		print(self.sq.get_title_deed_card().get_image())
 		self.title_label = pyglet.text.Label("{} landed on a station".format(self.player.get_name().capitalize()),
                             font_name='Times New Roman',
                             font_size=36,
@@ -42,6 +46,7 @@ class StationWindow(pyglet.window.Window):
 		#Draw labels
 		for l in self.labels:
 			l.draw()
+		self.card.blit(0,0)
 
 	def exit_callback(self, t):
 		"""Exit the window"""

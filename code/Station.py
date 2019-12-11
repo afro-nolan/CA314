@@ -44,5 +44,8 @@ class Station:
 	def get_rent(self):
 		return self.title_deed_card.get_rent_price()
 
+	def get_title_deed_card(self):
+		return self.title_deed_card
+
 
 

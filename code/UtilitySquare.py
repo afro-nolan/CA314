@@ -9,7 +9,6 @@ class UtilitySquare(Square):
 		self.owner = False
 		self.title_deed_card = title_deed_card
 
-
 	def get_price(self):
 		return self.cost
 
@@ -41,5 +40,9 @@ class UtilitySquare(Square):
 
 	def set_owned(self, own):
 		self.owned = own
+
+	def get_title_deed_card(self):
+		return self.title_deed_card
+
 
 		

@@ -18,11 +18,13 @@ class PropertyWindow(pyglet.window.Window):
         self.player = game.get_turn() #get player whosed turn it is
         self.sq = self.player.get_square() #square player is on
         self.card  = pyglet.resource.image(self.sq.get_title_deed_card().get_image()) #title deed card
+        #title label
         self.title_label = pyglet.text.Label("{} landed on {}".format(self.player.get_name().capitalize(), self.sq.get_name()),
                             font_name='Times New Roman',
                             font_size=36,
                             x=self.width//2, y=self.height//2+300,
                             anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
+        #Check if owned or unowned
         if self.player.get_square().check_ownership() == False:
             #Text Label
             self.text_label = pyglet.text.Label("Press 'b' to buy or 'A' to auction",

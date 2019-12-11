@@ -15,9 +15,10 @@ class PropertyWindow(pyglet.window.Window):
         pyglet.gl.glClearColor(0.3,0.4,0.5, 1) #Background colour
         self.set_location(100, 100) #Set the location of the window
         self.labels = []
-        self.card  = pyglet.resource.image('resources/crumlin.png') #title deed card
         self.player = game.get_turn() #get player whosed turn it is
-        self.title_label = pyglet.text.Label("{} landed on {}".format(self.player.get_name().capitalize(), self.player.get_square().get_name()),
+        self.sq = self.player.get_square() #square player is on
+        self.card  = pyglet.resource.image(self.sq.get_title_deed_card().get_image()) #title deed card
+        self.title_label = pyglet.text.Label("{} landed on {}".format(self.player.get_name().capitalize(), self.sq.get_name()),
                             font_name='Times New Roman',
                             font_size=36,
                             x=self.width//2, y=self.height//2+300,

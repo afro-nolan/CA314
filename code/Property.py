@@ -19,6 +19,9 @@ class Property:
 		"""Get the houses count"""
 		return self.houses
 
+	def get_title_deed_card(self):
+		return self.title_deed_card
+
 	def get_hotels(self):
 		"""Get the hotels count"""
 		return self.hotels

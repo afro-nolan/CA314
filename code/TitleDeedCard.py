@@ -3,7 +3,7 @@ from Card import Card
 
 class TitleDeedCard(Card):
 
-	def __init__(self, name, keep, cost, mortgage_price, rent, grouping, colour, house_price, hotel_price):
+	def __init__(self, name, keep, cost, mortgage_price, rent, grouping, colour, house_price, hotel_price, img=""):
 		super().__init__(self, name, keep)
 		self.cost = cost
 		self.mortgage_price = mortgage_price
@@ -12,6 +12,7 @@ class TitleDeedCard(Card):
 		self.colour = colour
 		self.house_price = house_price
 		self.hotel_price = hotel_price
+		self.image = img
 
 	def get_price(self):
 		return self.cost
@@ -27,3 +28,6 @@ class TitleDeedCard(Card):
 
 	def get_name(self):
 		return self.name
+
+	def get_image(self):
+		return self.image

@@ -11,9 +11,7 @@ class StationWindow(pyglet.window.Window):
 		self.labels = []
 		self.player = self.game.get_turn() #get player whosed turn it is
 		self.sq = self.player.get_square() #square player is on
-		print("station")
 		self.card = pyglet.resource.image(self.sq.get_title_deed_card().get_image()) #title deed card
-		print(self.sq.get_title_deed_card().get_image())
 		self.title_label = pyglet.text.Label("{} landed on a station".format(self.player.get_name().capitalize()),
                             font_name='Times New Roman',
                             font_size=36,
@@ -60,10 +58,10 @@ class StationWindow(pyglet.window.Window):
 
 		if symbol == key.B:
 			#property is unowned
-            if self.sq.check_ownership() == False:
-                #Player has enough money
-                if self.player.get_inventory().check_balance() >= self.sq.get_title_deed_card().get_price():
-                    #Player buys property
-                    self.sq.buy_station(self.player)
-            else:
-            	self.sq.pay_rent(self.player)
+			if self.sq.check_ownership() == False:
+			#Player has enough money
+				if self.player.get_inventory().check_balance() >= self.sq.get_title_deed_card().get_price():
+				#Player buys property
+					self.sq.buy_station(self.player)
+			else:
+				self.sq.pay_rent(self.player)

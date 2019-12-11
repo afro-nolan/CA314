@@ -19,7 +19,7 @@ class Station:
 		return self.location
 
 	def buy_station(self, player):
-		if check_ownership() is False:
+		if self.check_ownership() is False:
 			player.inventory.place_card(self.title_deed_card)
 			player.inventory.withdraw(self.cost)
 			Bank.deposit(self.cost)

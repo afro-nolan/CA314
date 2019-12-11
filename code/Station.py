@@ -30,7 +30,7 @@ class Station:
 
 	def pay_rent(self, player):
 		player.withdraw(self.get_rent())
-		Bank.deposit(self.get_rent())
+		self.owner.deposit(self.get_rent())
 
 	def check_ownership(self):
 		return self.owned

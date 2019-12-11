@@ -1,8 +1,8 @@
 import pyglet
 from pyglet.window import key
 import sys
-import Player
-
+from Player import Player
+from Property import Property
 
 
 class PropertyWindow(pyglet.window.Window):
@@ -25,7 +25,7 @@ class PropertyWindow(pyglet.window.Window):
                             x=self.width//2, y=self.height//2+300,
                             anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
         #Check if owned or unowned
-        if self.player.get_square().check_ownership() == False:
+        if self.sq.check_ownership() == False:
             #Text Label
             self.text_label = pyglet.text.Label("Press 'b' to buy or 'A' to auction",
                             font_name='Times New Roman',
@@ -50,8 +50,18 @@ class PropertyWindow(pyglet.window.Window):
             pyglet.clock.schedule_once(self.exit_callback , 2)
             AuctionWindow()
 
+        #Player wants to buy the property
         elif symbol == key.B:
-            print("B key was pressed")
+            #property is unowned
+            if self.sq.check_ownership() == False:
+                #Player has enough money
+                if self.player.get_inventory().check_balance() >= self.sq.get_title_deed_card().get_price():
+                    #Player buys property
+                    self.sq.buy_property(self.player)
+            #Else, pay the owner rent
+            else:
+                self.sq.pay_rent(self.player)
+
 
         elif symbol == key.ENTER or symbol == key.RETURN:
             from gameboardstarterwindow import startgamewindow

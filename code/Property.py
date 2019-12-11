@@ -1,3 +1,4 @@
+from Bank import Bank
 
 class Property:
 

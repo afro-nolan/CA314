@@ -57,3 +57,13 @@ class StationWindow(pyglet.window.Window):
 			from gameboardstarterwindow import startgamewindow
 			pyglet.clock.schedule_once(self.exit_callback , 2)
 			startgamewindow(self.game)
+
+		if symbol == key.B:
+			#property is unowned
+            if self.sq.check_ownership() == False:
+                #Player has enough money
+                if self.player.get_inventory().check_balance() >= self.sq.get_title_deed_card().get_price():
+                    #Player buys property
+                    self.sq.buy_station(self.player)
+            else:
+            	self.sq.pay_rent(self.player)

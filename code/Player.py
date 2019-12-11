@@ -22,6 +22,9 @@ class Player:
 		"""return the name of the player"""
 		return self.name
 
+	def get_inventory(self):
+		return self.inventory
+
 	def set_square(self, sq):
 		self.square = sq
 

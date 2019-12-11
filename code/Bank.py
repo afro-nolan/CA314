@@ -16,7 +16,6 @@ class Bank:
 			else:
 				return
 		
-
 	def get_house_count(self):
 		return self.houses
 
@@ -35,6 +34,12 @@ class Bank:
 
 	def remove_card(self, card):
 		self.cards.remove(card)
+
+	def deposit(self, amount):
+		self.money += amount
+
+	def withdraw(self, amount):
+		self.money -= amount
 
 	def auction(self, player, property):
 		pass

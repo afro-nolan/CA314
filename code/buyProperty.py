@@ -15,7 +15,8 @@ class PropertyWindow(pyglet.window.Window):
         pyglet.gl.glClearColor(0.3,0.4,0.5, 1) #Background colour
         self.set_location(100, 100) #Set the location of the window
         self.labels = []
-        self.player = game.get_turn() #get player whosed turn it is
+        self.bank = self.game.get_bank()
+        self.player = self.game.get_turn() #get player whosed turn it is
         self.sq = self.player.get_square() #square player is on
         self.card  = pyglet.resource.image(self.sq.get_title_deed_card().get_image()) #title deed card
         #title label
@@ -57,7 +58,7 @@ class PropertyWindow(pyglet.window.Window):
                 #Player has enough money
                 if self.player.get_inventory().check_balance() >= self.sq.get_title_deed_card().get_price():
                     #Player buys property
-                    self.sq.buy_property(self.player)
+                    self.sq.buy_property(self.player, self.bank)
             #Else, pay the owner rent
             else:
                 self.sq.pay_rent(self.player)

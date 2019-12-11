@@ -10,12 +10,8 @@ class UtilityWindow(pyglet.window.Window):
 		self.set_location(100, 100) #Set the location of the window
 		self.labels = []
 		self.player = self.game.get_turn() #get player whosed turn it is
-		print(self.player.get_name())
 		self.sq = self.player.get_square() #square player is on
-		print(self.sq.get_name())
-		print(self.sq.get_title_deed_card().get_image())
 		self.card = pyglet.resource.image(self.sq.get_title_deed_card().get_image()) #title deed card
-		print(self.sq.get_title_deed_card().get_name())
 		#Title Label
 		self.title_label = pyglet.text.Label('{} landed on an Utility'.format(self.player.get_name().capitalize()),
                          font_name='Times New Roman',

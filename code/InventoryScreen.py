@@ -18,10 +18,14 @@ class InventoryWindow(pyglet.window.Window):
 		self.game = game #Game object
 		#player's turn
 		self.player = player
+		#bank
+		self.bank = game.get_bank()
 		#Get players wallet
 		self.wallet = self.player.inventory.check_balance()
 		#Labels
 		self.labels = []
+		self.cards = []
+		self.card = "reources/kimmage.png"
 		self.properties = self.player.inventory.properties
 		#Inventory label
 		self.title_label = pyglet.text.Label("Inventory", 
@@ -63,22 +67,11 @@ class InventoryWindow(pyglet.window.Window):
 						anchor_x = 'center', anchor_y='center', color=(0, 0, 0, 255))
 			self.labels.append(self.show_property_label)
 		else:
-			start_height = self.width // 2
-			i = 0
-			for property in self.properties:
-				pname = property.title_deed_card.get_name()
-				if self.properties[property] != "mortgaged":
-					prop_label = pyglet.text.Label("{}".format(pname), 
-							font_name="Times New Roman", font_size = 28,
-							x=start_height + i, y=self.height//2,
-							anchor_x = 'center', anchor_y='center', color=(0, 0, 0, 255))
-				else:
-					prop_label = pyglet.text.Label("{} - mortgaged".format(pname), 
-							font_name="Times New Roman", font_size = 28,
-							x=start_height + i, y=self.height//2,
-							anchor_x = 'center', anchor_y='center', color=(0, 0, 0, 255))
-				i += 30
-				self.labels.append(prop_label)
+			for prop in self.properties:
+				self.card = prop.get_image()
+				self.cards.append(self.card)
+				self.render()
+				
 
 	def on_key_press(self, symbol, modifiers):
 		#Go back to game screen

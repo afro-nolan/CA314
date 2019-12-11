@@ -63,15 +63,15 @@ class Property:
 		player.inventory.deposit(self.title_deed_card.get_hotel_price()) #Deposit the money in the players wallet
 		self.hotel -= 1 #Decrement the hotel count
 
-	def buy_property(self, player):
+	def buy_property(self, player, bank):
 		"""Buy a property for a player"""
 		#If the property is unowned
 		if self.owned is False:
 			player.inventory.withdraw(self.title_deed_card.get_price()) #Charge the player
-			Bank.deposit(self.title_deed_card.get_price()) #Deposit the money 
+			bank.deposit(self.title_deed_card.get_price()) #Deposit the money 
 			self.set_owner(player) #Set the player as the owner
 			self.set_owned(True) #Set the owned value to True
-			self.player.inventory.place_property(self.title_deed_card) #Place the card in the player's inventory
+			player.inventory.place_property(self.title_deed_card) #Place the card in the player's inventory
 		else:
 			self.pay_rent()
 			return False
@@ -99,7 +99,7 @@ class Property:
 	def set_owner(self, player):
 		self.owner = player
 
-	def set_owned(self):
+	def set_owned(self, own):
 		self.owned = own
 
 	def get_owner(self):

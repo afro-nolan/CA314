@@ -18,15 +18,15 @@ class Station:
 	def get_location(self):
 		return self.location
 
-	def buy_station(self, player):
+	def buy_station(self, player, bank):
 		if self.check_ownership() is False:
 			player.inventory.place_card(self.title_deed_card)
 			player.inventory.withdraw(self.cost)
-			Bank.deposit(self.cost)
-			set_owned(True)
-			set_owner(player)
+			bank.deposit(self.cost)
+			self.set_owned(True)
+			self.set_owner(player)
 		else:
-			pay_rent(player)
+			self.pay_rent(player)
 
 	def pay_rent(self, player):
 		player.withdraw(self.get_rent())

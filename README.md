@@ -1,4 +1,10 @@
 # CA314
+
+To Run:
+1. Download the repo
+2. In your terminal, type the line: ```python3 startgame.py```
+3. In the game, to change screens use the ENTER key.
+
 Group Project for Object-Oriented Design and Analysis
 
 Designing a game of monopoly.

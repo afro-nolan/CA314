@@ -16,7 +16,7 @@ class CardWindow(pyglet.window.Window):
 		self.card = random.choice(list(self.game.chance.items()))
 		self.card_image = pyglet.resource.image(self.card[1])
 		#Title Label
-		self.title_label = pyglet.text.Label('{} landed on a card space!'.format(self.player.get_name().capitalize()),
+		self.title_label = pyglet.text.Label('{} picks up a card!'.format(self.player.get_name().capitalize()),
                          font_name='Times New Roman',
                          font_size=48,
                          x=self.width//2, y=self.height - 100,

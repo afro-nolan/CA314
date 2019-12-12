@@ -109,15 +109,15 @@ class Game:
 	def initialise_cards(self):
 		"""Initialise the cards"""
 		self.chance = {
-			GameCard("Chance Card", "Take a trip to King's Cross Station. If you pass Go collect 200.", False, "Move", None, None, "King's Cross Station" ) : "resources/chance1.jpg",
-			GameCard("Chance Card", "You have been elected Chairman of the Board. Pay each player 50.", False, "Lose", 50, self.players, None) : "resources/chance3.jpg",
-			GameCard("Chance Card", "Advance to the nearest utility. If unowned you may buy it from the bank. If owned, throw dice and pay owner a total ten times thrown.", False, "Move", None, None, "Utility") : "resources/chance4.jpg",
-			GameCard("Chance Card", "Go back three spaces.", False, "Move", None, None, -3 ) : "resources/chance5.jpg",
-			GameCard("Chance Card", "Your building loan matures. Collect 150.", False, "Gain", 150, None, None ) : "resources/chance6.jpg",
-			GameCard("Chance Card", "Advance to Pall Mall. If you pass go collect 200.", False, "Move", None, None, "Pall Mall") : "resources/chance7.jpg",
-			GameCard("Chance Card", "Make general repairs on all your property: For each house pay 25, for each hotel pay 100.", False, "Lose", (25, 100), None, None) :"resources/chance8.jpg",
-			GameCard("Chance Card","Go to Jail. Go directly to jail, Do not pass Go, Do not collect 200.", False, "Jail", None, None, "Jail") : "resources/chance9.jpg",
-			GameCard("Chance Card", "Get out of jail Free. This card may be kept until needed or traded", True, "GetOutOfJail", None, None, None) : "resources/chance12.jpg",
+			GameCard("Chance Card", "Take a trip to Heuston Station. If you pass Go collect 200.", False, "Move", None, None, "King's Cross Station" ) : "resources/Chance2.png",
+			GameCard("Chance Card", "You have been elected Chairman of the Board. Pay each player 50.", False, "Lose", 50, self.players, None) : "resources/Chance1.png",
+			GameCard("Chance Card", "Advance to the nearest utility. If unowned you may buy it from the bank. If owned, throw dice and pay owner a total ten times thrown.", False, "Move", None, None, "Utility") : "resources/Chance4.png",
+			GameCard("Chance Card", "Go back three spaces.", False, "Move", None, None, -3 ) : "resources/Chance5.png",
+			GameCard("Chance Card", "Your building loan matures. Collect 150.", False, "Gain", 150, None, None ) : "resources/Chance6.png",
+			GameCard("Chance Card", "Advance to Henry Street. If you pass go collect 200.", False, "Move", None, None, "Pall Mall") : "resources/Chance7.png",
+			GameCard("Chance Card", "Make general repairs on all your property: For each house pay 25, for each hotel pay 100.", False, "Lose", (25, 100), None, None) :"resources/Chance8.png",
+			GameCard("Chance Card","Go to Jail. Go directly to jail, Do not pass Go, Do not collect 200.", False, "Jail", None, None, "Jail") : "resources/Chance9.png",
+			GameCard("Chance Card", "Get out of jail Free. This card may be kept until needed or traded", True, "GetOutOfJail", None, None, None) : "resources/Chance12.png",
 		}	
 
 	def initialise_bank(self):

@@ -14,7 +14,7 @@ class CardWindow(pyglet.window.Window):
 		self.player = self.game.get_player_turn()
 		self.sq = self.player.get_square() #square player is on
 		self.card = random.choice(list(self.game.chance.items()))
-		self.card_image = self.card[1]
+		self.card_image = pyglet.resource.image(self.card[1])
 		#Title Label
 		self.title_label = pyglet.text.Label('{} landed on a card space!'.format(self.player.get_name().capitalize()),
                          font_name='Times New Roman',

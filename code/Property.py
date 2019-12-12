@@ -11,6 +11,7 @@ class Property:
 		self.hotels = 0 #Count of hotels on property
 		self.owned = owned #Boolean Value representing if the property if owned
 		self.owner = owner #Player who owns the property or None
+		self.mortgaged = False
 
 	def get_location(self):
 		"""Get the location of the property"""
@@ -19,6 +20,13 @@ class Property:
 	def get_houses(self):
 		"""Get the houses count"""
 		return self.houses
+
+
+	def mortgage(self):
+		self.mortgaged = True
+
+	def get_mortgage(self):
+		return self.mortgaged
 
 	def get_title_deed_card(self):
 		return self.title_deed_card

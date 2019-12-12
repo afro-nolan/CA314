@@ -123,6 +123,7 @@ class MainGameWindow(pyglet.window.Window):
 		if symbol == key.R:
 			#Get the sum of the dice
 			amount = self.player.move()
+			self.game.set_amount(amount)
 			self.get_square()
 			#Update the action message
 			self.labels.pop()

@@ -25,6 +25,7 @@ class Game:
 		self.winner = "Aifric"
 		self.board = None
 		self.bank = None
+		self.amount = 0 #player's roll
 		self.chance = None #Holds chance cards
 		self.community_chest = None #Holds community chest cards
 		self.help = None
@@ -49,6 +50,14 @@ class Game:
 	def get_players(self):
 		"""Return the players in the game"""
 		return self.players
+
+	def set_amount(self, amount):
+		"""set player roll"""
+		self.amount = amount
+
+	def get_amount(self):
+		return self.amount
+
 
 	def initialise_board(self):
 		"""Initialise the board"""

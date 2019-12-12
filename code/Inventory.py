@@ -17,6 +17,9 @@ class Inventory:
 		"""Place the card in the inventory"""
 		self.cards.append(card)
 
+	def get_properties(self):
+		return self.properties
+
 	def remove_property(self, property):
 		"""Remove the property from the inventory"""
 		self.properties.remove(property)

@@ -61,7 +61,7 @@ class PropertyWindow(pyglet.window.Window):
                     self.sq.buy_property(self.player, self.bank)
             #Else, pay the owner rent
             else:
-                self.sq.pay_rent(self.player)
+                self.sq.pay_rent(self.player, self.sq.get_owner())
 
 
         elif symbol == key.ENTER or symbol == key.RETURN:

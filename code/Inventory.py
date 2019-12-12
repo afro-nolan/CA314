@@ -52,6 +52,9 @@ class Inventory:
 		"""Check the balance of the balance"""
 		return self.wallet
 
+	def set_properties(self, inven):
+		self.properties = inven
+
 	def unmortgagedProperties(self):
 		"""Check if there are any unmortgaged properties in the inventory"""
 		for property in self.properties:

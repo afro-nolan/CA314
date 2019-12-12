@@ -3,7 +3,7 @@
 class Bank:
 
 	def __init__(self):
-		self.money = 20,580
+		self.money = 20580
 		self.houses = 0
 		self.hotels = 0 
 		self.properties = []
@@ -49,6 +49,13 @@ class Bank:
 		if property.get_mortgage() == False:
 			#mortgage the property
 			property.mortgage()
+			#player inventory
+			inventory = player.get_inventory()
+			#set status of property to mortgaged in inventory
+			properties = inventory.get_properties()
+			if property in properties:
+				properties[property] = "mortgaged"
+			self.player.get_inventory().set_properties(properties)
 			#get the mortgage price
 			price = property.get_title_deed_card().get_mortgage_price()
 			#give the player the mortgage money

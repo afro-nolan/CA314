@@ -65,7 +65,7 @@ class UtilityWindow(pyglet.window.Window):
 				roll = self.game.get_amount()
 				#get utility price
 				price = self.sq.get_title_deed_card().get_utility_cost(roll, num_owned)
-				self.sq.pay_rent(self.player, self.sq.get_owner())
+				self.sq.pay_rent(self.player, self.sq.get_owner(), price)
 
 	def get_utilities(self):
 		"""Get the number of utilities the player owns"""

@@ -28,9 +28,9 @@ class UtilitySquare(Square):
 		else:
 			pay_rent(player)
 
-	def pay_rent(self, player):
-		player.withdraw(self.title_deed_card.rent)
-		Bank.deposit(self.title_deed_card.rent)
+	def pay_rent(self, player, bank, rent_price):
+		player.withdraw(rent_price)
+		bank.deposit(rent_price)
 
 	def check_ownership(self):
 		return self.owned

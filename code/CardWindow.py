@@ -12,16 +12,17 @@ class CardWindow(pyglet.window.Window):
 		self.set_location(100, 100) #Set the location of the window
 		self.labels = []
 		self.player = self.game.get_player_turn()
-		self.card = ""
-		self.card_image = ""
+		self.sq = self.player.get_square() #square player is on
+		self.card = random.choice(list(self.game.chance.items()))
+		self.card_image = self.card[1]
 		#Title Label
 		self.title_label = pyglet.text.Label('{} landed on a card space!'.format(self.player.get_name().capitalize()),
                          font_name='Times New Roman',
                          font_size=48,
                          x=self.width//2, y=self.height - 100,
-                          anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
+                          anchor_x
+                          ='center', anchor_y='center', color=(0, 0, 0, 255))
 		self.labels.append(self.title_label)
-		self.get_card()
 
 	def on_draw(self):
 		"""Draws on the screen"""
@@ -45,11 +46,5 @@ class CardWindow(pyglet.window.Window):
 			from gameboardstarterwindow import startgamewindow
 			pyglet.clock.schedule_once(self.exit_callback , 2)
 			startgamewindow(self.game)
-
-	def get_card(self):
-		self.card = random.choice(list(self.g.chance.items()))
-		print(self.card.get_instruction())
-		self.card_image = self.d.chance[card]
-
 
 

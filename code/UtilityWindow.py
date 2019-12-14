@@ -19,7 +19,7 @@ class UtilityWindow(pyglet.window.Window):
                          x=self.width//2, y=self.height - 100,
                           anchor_x='center', anchor_y='center', color=(0, 0, 0, 255))
 		if self.player.get_square().check_ownership() == False:
-			self.text_label = pyglet.text.Label("Press 'b' to buy or 'A' to auction",
+			self.text_label = pyglet.text.Label("Press 'B' to buy or 'A' to auction",
                             font_name='Times New Roman',
                             font_size=36,
                             x=self.width//2, y=self.height//2+200,

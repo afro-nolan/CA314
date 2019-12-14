@@ -28,7 +28,7 @@ class PropertyWindow(pyglet.window.Window):
         #Check if owned or unowned
         if self.sq.check_ownership() == False:
             #Text Label
-            self.text_label = pyglet.text.Label("Press 'b' to buy or 'A' to auction",
+            self.text_label = pyglet.text.Label("Press 'B' to buy or 'A' to auction",
                             font_name='Times New Roman',
                             font_size=36,
                             x=self.width//2, y=self.height//2+200,
